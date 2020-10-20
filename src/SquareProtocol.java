@@ -4,6 +4,7 @@ public class SquareProtocol {
     }
 
     private String squareInput(String inputLine) {
+        System.out.println("Attempting to square " + inputLine + "...");
         int number;
 
         try {
@@ -13,7 +14,7 @@ public class SquareProtocol {
         }
 
         int square = number * number;
-
+        System.out.println("Square: " + square);
         return "Square of " + number + " is " + square;
     }
 }
