@@ -35,49 +35,30 @@ public class SquareClient {
 
     private static void sendSquareRequest(String number, PrintWriter out, BufferedReader in) {
         try {
-            ArrayList<String> keys = new ArrayList<>();
-            ArrayList<Object> values = new ArrayList<>();
-            keys.add("process");
-            values.add("square");
-            keys.add("number");
-            values.add(number);
+            Message message = new Message();
+            message.put("process", "square");
+            message.put("number", "" + number);
 
             // send request
-            out.println(packageIntoJSONString(keys, values));
+            out.println(message.toString());
 
             // receive message
-            JSONObject receivedMessage = parseJSONStringIntoJSONObject(in.readLine());
+            Message receivedMessage = new Message();
+            receivedMessage.fromString(in.readLine());
 
             // print answer
-            if (receivedMessage.get("success").equals(true)) {
+            String success = (String) receivedMessage.get("success");
+
+            if (success.equals("true")) {
                 System.out.println(receivedMessage.get("answer"));
             }
             else {
-                System.out.println("Request was unsuccessful!");
+                System.out.println("Reason: " + receivedMessage.get("reason"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
-
-    private static String packageIntoJSONString(ArrayList<String> keys, ArrayList<Object> values) {
-        assert(keys.size() == values.size());
-        JSONObject message = new JSONObject();
-        for (int i = 0; i < keys.size(); i++) {
-            message.put(keys.get(i), values.get(i));
-        }
-        return message.toJSONString();
-    }
-
-    private static JSONObject parseJSONStringIntoJSONObject(String jsonString) {
-        JSONParser parser = new JSONParser();
-        try {
-            return (JSONObject) parser.parse(jsonString);
-        } catch(Exception e) {
-            System.out.printf("Something went wrong with parsing the jsonString " + jsonString + "!");
-        }
-        return null;
     }
 
 }

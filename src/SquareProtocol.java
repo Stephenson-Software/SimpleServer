@@ -7,30 +7,29 @@ public class SquareProtocol {
     public String processInput(String input) {
         String toReturn = "";
         try {
-            JSONObject message = parseJSONStringIntoJSONObject(input);
+            Message receivedMessage = new Message();
+            receivedMessage.fromString(input);
 
-            String process = (String) message.get("process");
+            String process = (String) receivedMessage.get("process");
 
             switch(process) {
                 case "square":
-                    toReturn = squareInput(message);
+                    toReturn = squareInput(receivedMessage);
                     break;
                 default:
-                    ArrayList<String> keys = new ArrayList<>();
-                    ArrayList<Object> values = new ArrayList<>();
-                    keys.add("success");
-                    values.add(false);
+                    Message message = new Message();
+                    message.put("success", "false");
+                    message.put("reason", "process not recognized");
 
-                    toReturn = packageIntoJSONString(keys, values);
+                    toReturn = message.toString();
                     break;
             }
         } catch (Exception e) {
-            ArrayList<String> keys = new ArrayList<>();
-            ArrayList<Object> values = new ArrayList<>();
-            keys.add("success");
-            values.add(false);
+            Message message = new Message();
+            message.put("success", "false");
+            message.put("reason", "Something went wrong when processing input.");
 
-            toReturn = packageIntoJSONString(keys, values);
+            toReturn = message.toString();
 
             System.out.printf("Something went wrong when processing input.");
         }
@@ -38,27 +37,10 @@ public class SquareProtocol {
         return toReturn;
     }
 
-    private static String packageIntoJSONString(ArrayList<String> keys, ArrayList<Object> values) {
-        assert(keys.size() == values.size());
-        JSONObject message = new JSONObject();
-        for (int i = 0; i < keys.size(); i++) {
-            message.put(keys.get(i), values.get(i));
-        }
-        return message.toJSONString();
-    }
 
-    private static JSONObject parseJSONStringIntoJSONObject(String jsonString) {
-        JSONParser parser = new JSONParser();
-        try {
-            return (JSONObject) parser.parse(jsonString);
-        } catch(Exception e) {
-            System.out.printf("Something went wrong with parsing the jsonString " + jsonString + "!");
-        }
-        return null;
-    }
 
-    private String squareInput(JSONObject message) {
-        String inputLine = (String) message.get("number");
+    private String squareInput(Message receivedMessage) {
+        String inputLine = (String) receivedMessage.get("number");
 
         System.out.println("Attempting to square " + inputLine + "...");
         int number;
@@ -66,23 +48,21 @@ public class SquareProtocol {
         try {
             number = Integer.parseInt(inputLine);
         } catch (Exception e) {
-            return "Wrong input!";
+            Message message = new Message();
+            message.put("success", "false");
+            message.put("reason", "Wrong input!");
+
+            return message.toString();
         }
 
         int square = number * number;
         System.out.println("Square: " + square);
 
-        JSONObject returnMessage = new JSONObject();
-        returnMessage.put("success", true);
-        returnMessage.put("answer", "Square of " + number + " is " + square);
 
-        ArrayList<String> keys = new ArrayList<>();
-        ArrayList<Object> values = new ArrayList<>();
-        keys.add("success");
-        values.add(true);
-        keys.add("answer");
-        values.add("Square of " + number + " is " + square);
+        Message message = new Message();
+        message.put("success", "true");
+        message.put("answer", "Square of " + number + " is " + square);
 
-        return packageIntoJSONString(keys, values);
+        return message.toString();
     }
 }
