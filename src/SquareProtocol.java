@@ -1,8 +1,3 @@
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.util.ArrayList;
-
 public class SquareProtocol {
     public String processInput(String input) {
         String toReturn = "";
