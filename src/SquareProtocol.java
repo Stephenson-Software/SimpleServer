@@ -26,7 +26,7 @@ public class SquareProtocol {
 
             toReturn = message.toString();
 
-            System.out.printf("Something went wrong when processing input.");
+            System.out.println("Something went wrong when processing input.");
         }
 
         return toReturn;
@@ -37,7 +37,7 @@ public class SquareProtocol {
     private String squareInput(Message receivedMessage) {
         String inputLine = (String) receivedMessage.get("number");
 
-        System.out.println("Attempting to square " + inputLine + "...");
+        System.out.println("Squaring " + inputLine);
         int number;
 
         try {
@@ -45,18 +45,18 @@ public class SquareProtocol {
         } catch (Exception e) {
             Message message = new Message();
             message.put("success", "false");
-            message.put("reason", "Wrong input!");
+            message.put("reason", "Wrong type of input!");
 
             return message.toString();
         }
 
         int square = number * number;
-        System.out.println("Square: " + square);
+        System.out.println("Answer: " + square);
 
 
         Message message = new Message();
         message.put("success", "true");
-        message.put("answer", "Square of " + number + " is " + square);
+        message.put("answer", "The square of that number is " + square);
 
         return message.toString();
     }

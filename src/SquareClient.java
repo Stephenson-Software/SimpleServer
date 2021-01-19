@@ -19,12 +19,12 @@ public class SquareClient {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            sendSquareRequest("10", out, in);
+            sendSquareRequest("3", out, in);
 
         } catch (UnknownHostException e) {
-            System.out.println("Host unknown");
+            System.out.println("Unknown host.");
         } catch (IOException e) {
-            System.out.println("Something went wrong with the I/O connection.");
+            System.out.println("Something went wrong.");
         }
 
     }
@@ -49,7 +49,7 @@ public class SquareClient {
                 System.out.println(receivedMessage.get("answer"));
             }
             else {
-                System.out.println("Reason: " + receivedMessage.get("reason"));
+                System.out.println("Reason for failure: " + receivedMessage.get("reason"));
             }
         } catch (Exception e) {
             e.printStackTrace();

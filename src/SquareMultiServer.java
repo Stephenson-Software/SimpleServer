@@ -13,13 +13,13 @@ public class SquareMultiServer {
             ServerSocket serverSocket = new ServerSocket(portNumber);
 
             while (listening) {
-                System.out.println("Listening...");
+                System.out.println("Listening for a new connection...");
                 new SquareMultiServerThread(serverSocket.accept()).start();
-                System.out.println("New connection!");
+                System.out.println("A new connection has been made!");
             }
 
         } catch(Exception e) {
-            System.out.println("Error: Could not listen on port " + portNumber);
+            System.out.println("ERROR: Was not able to listen on port " + portNumber);
         }
 
     }
