@@ -27,7 +27,7 @@ public class SquareMultiServerThread extends Thread {
 
                 outputLine = p.processInput(inputLine);
                 out.println(outputLine);
-                if (outputLine.equals("Bye")) {
+                if (outputLine.equals("over")) {
                     break;
                 }
 
@@ -36,7 +36,8 @@ public class SquareMultiServerThread extends Thread {
             socket.close();
 
         } catch(Exception e) {
-            System.out.println("Something went wrong!");
+            System.out.println("Exception!");
+            e.printStackTrace();
         }
 
     }
