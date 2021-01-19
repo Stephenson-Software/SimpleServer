@@ -3,11 +3,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class SquareMultiServerThread extends Thread {
+public class MSThread extends Thread {
 
     private Socket socket = null;
 
-    public SquareMultiServerThread(Socket socket) {
+    public MSThread(Socket socket) {
         super("SquareMultiServerThread");
         this.socket = socket;
     }
@@ -21,7 +21,7 @@ public class SquareMultiServerThread extends Thread {
 
             String inputLine, outputLine;
 
-            SquareProtocol p = new SquareProtocol();
+            Protocol p = new Protocol();
 
             while ((inputLine = in.readLine()) != null) {
 

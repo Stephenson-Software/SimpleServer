@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class SquareMultiServer {
+public class MultiServer {
 
     public static void main(String[] args) throws IOException {
 
@@ -14,7 +14,7 @@ public class SquareMultiServer {
 
             while (listening) {
                 System.out.println("Listening for a new connection...");
-                new SquareMultiServerThread(serverSocket.accept()).start();
+                new MSThread(serverSocket.accept()).start();
                 System.out.println("A new connection has been made!");
             }
 

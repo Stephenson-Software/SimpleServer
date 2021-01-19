@@ -1,4 +1,4 @@
-public class SquareProtocol {
+public class Protocol {
     public String processInput(String input) {
         String toReturn = "";
         try {
