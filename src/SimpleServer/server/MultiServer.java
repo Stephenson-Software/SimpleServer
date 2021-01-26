@@ -11,10 +11,7 @@ public class MultiServer {
 
     public MultiServer(int port) {
         portNumber = port;
-        boolean success = initializeServerSocket();
-        if (!success) {
-            System.out.println("Something went wrong while initializing with port " + getPortNumber() + "!");
-        }
+        initializeServerSocket();
     }
 
     public void start() {
@@ -43,6 +40,7 @@ public class MultiServer {
             serverSocket = new ServerSocket(portNumber);
             return true;
         } catch (IOException e) {
+            System.out.println("Something went wrong while initializing with port " + getPortNumber() + "!");
             return false;
         }
     }

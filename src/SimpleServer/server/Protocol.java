@@ -1,5 +1,7 @@
 package SimpleServer.server;
 
+import SimpleServer.Message;
+
 public class Protocol {
     public String processInput(String input) {
         String toReturn = "";

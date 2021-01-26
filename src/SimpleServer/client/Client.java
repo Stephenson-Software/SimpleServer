@@ -5,59 +5,69 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import SimpleServer.Message;
 
 public class Client {
 
-    public static void main(String[] args) throws IOException {
+    private String hostName = null;
+    private int portNumber = -1;
+    private Socket socket = null;
+    private PrintWriter out = null;
+    private BufferedReader in = null;
 
-        String hostName = "Jeff-From-Surplus";
-        int portNumber = 5382;
-
-        try {
-
-            Socket socket = new Socket(hostName, portNumber);
-
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            sendSquareRequest("3", out, in);
-
-        } catch (UnknownHostException e) {
-            System.out.println("Unknown host.");
-        } catch (IOException e) {
-            System.out.println("Something went wrong.");
-        }
-
+    public Client(String host, int port) {
+        hostName = host;
+        portNumber = port;
+        initializeSocket();
+        initializeReader();
+        initializeWriter();
     }
 
-    private static void sendSquareRequest(String number, PrintWriter out, BufferedReader in) {
+    public String sendAndReceive(String s) {
+        sendStringToServer(s);
+        return getStringFromServer();
+    }
+
+    public void sendStringToServer(String s) {
+        out.println(s);
+    }
+
+    public String getStringFromServer() {
         try {
-            Message message = new Message();
-            message.put("process", "square");
-            message.put("number", "" + number);
-
-            // send request
-            out.println(message.toString());
-
-            // receive message
-            Message receivedMessage = new Message();
-            receivedMessage.fromString(in.readLine());
-
-            // print answer
-            String success = (String) receivedMessage.get("success");
-
-            if (success.equals("true")) {
-                System.out.println(receivedMessage.get("answer"));
-            }
-            else {
-                System.out.println("Reason for failure: " + receivedMessage.get("reason"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return in.readLine();
+        } catch (IOException e) {
+            System.out.println("Something went wrong when getting a string from the server.");
+            return null;
         }
+    }
 
+    private boolean initializeSocket() {
+        try {
+            socket = new Socket(hostName, portNumber);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Something went wrong when initializing the socket with port " + portNumber + ".");
+            return false;
+        }
+    }
+
+    private boolean initializeWriter() {
+        try {
+            out = new PrintWriter(socket.getOutputStream(), true);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Something went wrong when initializing writer.");
+            return false;
+        }
+    }
+
+    private boolean initializeReader() {
+        try {
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            return true;
+        } catch (IOException e) {
+            System.out.println("Something went wrong when initializing reader.");
+            return false;
+        }
     }
 
 }
