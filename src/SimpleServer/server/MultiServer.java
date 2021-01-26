@@ -6,8 +6,8 @@ import java.net.ServerSocket;
 public class MultiServer {
 
     private int portNumber = -1;
-    ServerSocket serverSocket = null;
-    boolean listening = false;
+    private ServerSocket serverSocket = null;
+    private boolean listening = false;
 
     public MultiServer(int port) {
         portNumber = port;
