@@ -1,3 +1,5 @@
+package SimpleServer.server;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -21,7 +23,7 @@ public class MSThread extends Thread {
 
             String inputLine, outputLine;
 
-            Protocol p = new Protocol();
+            Protocol p = new SimpleServer.server.Protocol();
 
             while ((inputLine = in.readLine()) != null) {
 
