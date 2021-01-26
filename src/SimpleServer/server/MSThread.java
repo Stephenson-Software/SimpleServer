@@ -27,7 +27,7 @@ public class MSThread extends Thread {
     public void run() {
         while (readNextLine()) {
             processInput();
-            processOutput();
+            sendResponseToClient();
 
             if (outputLine.equals("over")) {
                 break;
@@ -72,7 +72,7 @@ public class MSThread extends Thread {
         outputLine = protocol.processInput(inputLine);
     }
 
-    private void processOutput() {
+    private void sendResponseToClient() {
         out.println(outputLine);
     }
 
