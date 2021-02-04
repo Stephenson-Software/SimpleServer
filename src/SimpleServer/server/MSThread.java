@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class MSThread extends Thread {
 
@@ -29,9 +30,18 @@ public class MSThread extends Thread {
             processInput();
             sendResponseToClient();
 
-            if (outputLine.equals("over")) {
+            if (outputLine.equals("END_OF_CONNECTION")) {
+                disconnect();
                 break;
             }
+        }
+    }
+
+    public void disconnect() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -62,8 +72,11 @@ public class MSThread extends Thread {
     private boolean readNextLine() {
         try {
             return (inputLine = in.readLine()) != null;
+        } catch (SocketException e) {
+            System.out.println("Could not read next line. Client has disconnected.");
+            return false;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Could not read next line. IO Exception.");
             return false;
         }
     }
