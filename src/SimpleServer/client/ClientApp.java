@@ -2,11 +2,25 @@ package SimpleServer.client;
 
 import SimpleServer.Message;
 
+import java.util.Scanner;
+
 public class ClientApp {
 
     public static void main(String[] args) {
-        Client client = new Client("hostname", 2000);
-        sendSquareRequest("5", client);
+        Client client = new Client("Aesop", 2000);
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String toSend = scanner.nextLine();
+
+            if (toSend.equals("done")) {
+                break;
+            }
+
+            sendSquareRequest(toSend, client);
+        }
+
+        client.disconnect();
     }
 
     private static void sendSquareRequest(String number, Client client) {

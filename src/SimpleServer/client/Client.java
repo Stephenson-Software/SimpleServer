@@ -40,6 +40,10 @@ public class Client {
         }
     }
 
+    public void disconnect() {
+        sendStringToServer("END_OF_CONNECTION");
+    }
+
     private boolean initializeSocket() {
         try {
             socket = new Socket(hostName, portNumber);
