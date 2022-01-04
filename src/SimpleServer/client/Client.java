@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
-
     private String hostName = null;
     private int portNumber = -1;
     private Socket socket = null;
@@ -87,5 +86,4 @@ public class Client {
         }
         return false;
     }
-
 }

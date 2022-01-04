@@ -3,6 +3,7 @@ package SimpleServer.server;
 import SimpleServer.Message;
 
 public class Protocol {
+
     public String processInput(String input) {
         String toReturn = "";
         try {
@@ -35,8 +36,6 @@ public class Protocol {
 
         return toReturn;
     }
-
-
 
     private String squareInput(Message receivedMessage) {
         String inputLine = (String) receivedMessage.get("number");

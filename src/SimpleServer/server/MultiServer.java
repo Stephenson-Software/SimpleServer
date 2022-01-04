@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public class MultiServer {
-
     private int portNumber = -1;
     private ServerSocket serverSocket = null;
     private boolean listening = false;
@@ -55,5 +54,4 @@ public class MultiServer {
             return false;
         }
     }
-
 }

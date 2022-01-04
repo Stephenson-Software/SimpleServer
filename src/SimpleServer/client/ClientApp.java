@@ -10,6 +10,7 @@ public class ClientApp {
         Client client = new Client("Walter", 2000);
 
         Scanner scanner = new Scanner(System.in);
+
         while (true) {
             String toSend = scanner.nextLine();
 
@@ -45,5 +46,4 @@ public class ClientApp {
             System.out.println("Reason for failure: " + receivedMessage.get("reason"));
         }
     }
-
 }

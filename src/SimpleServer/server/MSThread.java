@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class MSThread extends Thread {
-
     private Socket socket = null;
     private PrintWriter out = null;
     private BufferedReader in = null;
@@ -88,5 +87,4 @@ public class MSThread extends Thread {
     private void sendResponseToClient() {
         out.println(outputLine);
     }
-
 }

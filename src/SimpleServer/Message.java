@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Message {
-
     private HashMap<String, Object> map = new HashMap<>();
     private ArrayList<String> keys = new ArrayList<>();
 
@@ -70,11 +69,8 @@ public class Message {
                         value = value + string.charAt(i);
                     }
                 }
-
             }
-
         }
-
     }
 
     public static void main(String[] args) {
@@ -88,5 +84,4 @@ public class Message {
         System.out.println(message2.toString());
 
     }
-
 }

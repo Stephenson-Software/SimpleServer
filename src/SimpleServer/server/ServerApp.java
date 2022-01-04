@@ -6,5 +6,4 @@ public class ServerApp {
         MultiServer server = new MultiServer(2000);
         server.start();
     }
-
 }
