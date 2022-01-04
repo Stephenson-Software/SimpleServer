@@ -2,6 +2,9 @@ package SimpleServer.server;
 
 import SimpleServer.Message;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class Protocol {
 
     public String processInput(String input) {

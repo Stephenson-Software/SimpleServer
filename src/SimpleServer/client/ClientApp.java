@@ -4,13 +4,17 @@ import SimpleServer.Message;
 
 import java.util.Scanner;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class ClientApp {
 
     public static void main(String[] args) {
-        Client client = new Client("Walter", 2000);
+        String hostname = "Walter";
+        int number = 2000;
+        Client client = new Client(hostname, number);
 
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             String toSend = scanner.nextLine();
 

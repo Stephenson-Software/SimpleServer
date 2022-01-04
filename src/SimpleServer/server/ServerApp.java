@@ -1,9 +1,13 @@
 package SimpleServer.server;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class ServerApp {
 
     public static void main(String[] args) {
-        MultiServer server = new MultiServer(2000);
+        int port = 2000;
+        MultiServer server = new MultiServer(port);
         server.start();
     }
 }

@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class MSThread extends Thread {
     private Socket socket = null;
     private PrintWriter out = null;

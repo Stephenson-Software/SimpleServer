@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class Client {
     private String hostName = null;
     private int portNumber = -1;

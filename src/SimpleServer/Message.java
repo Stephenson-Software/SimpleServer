@@ -3,6 +3,9 @@ package SimpleServer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class Message {
     private HashMap<String, Object> map = new HashMap<>();
     private ArrayList<String> keys = new ArrayList<>();

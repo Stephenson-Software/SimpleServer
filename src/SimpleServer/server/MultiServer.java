@@ -3,6 +3,9 @@ package SimpleServer.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class MultiServer {
     private int portNumber = -1;
     private ServerSocket serverSocket = null;
