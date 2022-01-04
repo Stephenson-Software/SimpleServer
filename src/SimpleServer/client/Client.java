@@ -55,6 +55,9 @@ public class Client {
     }
 
     private boolean initializeWriter() {
+        if (checkIfSocketIsNull()) {
+            return false;
+        }
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
             return true;
@@ -65,6 +68,9 @@ public class Client {
     }
 
     private boolean initializeReader() {
+        if (checkIfSocketIsNull()) {
+            return false;
+        }
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             return true;
@@ -72,6 +78,14 @@ public class Client {
             System.out.println("Something went wrong when initializing reader.");
             return false;
         }
+    }
+
+    private boolean checkIfSocketIsNull() {
+        if (socket == null) {
+            System.out.println("Socket is null.");
+            return true;
+        }
+        return false;
     }
 
 }

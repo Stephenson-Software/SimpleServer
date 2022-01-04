@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ClientApp {
 
     public static void main(String[] args) {
-        Client client = new Client("Aesop", 2000);
+        Client client = new Client("Walter", 2000);
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
