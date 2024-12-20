@@ -4,7 +4,7 @@ This project, **SimpleServer**, is developed and maintained as part of **Prepond
 
 ## Copyright Holder
 
-**Copyright © 2022-2025 Daniel McCoy Stephenson. All rights reserved.**
+**Copyright © 2020-2025 Daniel McCoy Stephenson. All rights reserved.**
 
 ## Licensing
 
