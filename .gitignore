@@ -1,0 +1,6 @@
+# Java compiler output
+*.class
+
+# Build output directories
+.build/
+out/
