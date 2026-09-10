@@ -19,8 +19,8 @@ knowing before it is used:
 
 - The comma is what terminates a pair, so a final pair written without one is dropped by the
   parser rather than being read as the end of the message.
-- Neither `=` nor `,` is escaped. Both characters are discarded wherever they occur inside a key
-  or a value, so no key and no value can carry either one.
+- Neither `=` nor `,` is escaped when a message is written, and both are read as delimiters, so
+  no key and no value can carry either character.
 - A key is appended to the message once per write, so a key written twice is emitted twice.
 
 ### Requests
