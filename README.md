@@ -1,6 +1,24 @@
 # SimpleServer
 A simple java multi-server that allows clients to connect and request the square of a number.
 
+## Layout
+
+The sources live under `src/`, and each directory below it matches its package name.
+
+| Class | Role |
+|-------|------|
+| `SimpleServer.server.ServerApp` | Entry point for the server. Starts a `MultiServer` on port `2000`. |
+| `SimpleServer.server.MultiServer` | Binds the port, then accepts connections and starts one `MSThread` for each. |
+| `SimpleServer.server.MSThread` | Reads each request line from its connection and writes back the response. |
+| `SimpleServer.server.Protocol` | Turns a request into a response. |
+| `SimpleServer.client.ClientApp` | Entry point for the client. Reads numbers from standard input, one per line, until the line `done`, and prints the server's `answer` or `reason` for each. |
+| `SimpleServer.client.Client` | Holds the client's socket and its reader and writer. |
+| `SimpleServer.Message` | The wire format shared by both ends. Also has a `main` that writes a message and parses it back. |
+
+The client's hostname, `Walter`, and its port, `2000`, are both hardcoded in
+`SimpleServer.client.ClientApp`, so the client has to be edited before it can reach a server on
+any other host.
+
 ## Protocol
 
 The server binds port `2000`, which is hardcoded in `SimpleServer.server.ServerApp`. Each
